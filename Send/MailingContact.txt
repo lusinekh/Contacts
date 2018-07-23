@@ -1,0 +1,32 @@
+USE [Contacts]
+GO
+
+/****** Object:  Table [dbo].[ContactMailingAddress]    Script Date: 22.07.2018 17:53:44 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[ContactMailingAddress](
+	[ContactId] [int] NOT NULL,
+	[MailingAddressId] [int] NOT NULL
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[ContactMailingAddress]  WITH CHECK ADD  CONSTRAINT [FK_ContactMailingAddress_ContactID] FOREIGN KEY([ContactId])
+REFERENCES [dbo].[Contact] ([Id])
+GO
+
+ALTER TABLE [dbo].[ContactMailingAddress] CHECK CONSTRAINT [FK_ContactMailingAddress_ContactID]
+GO
+
+ALTER TABLE [dbo].[ContactMailingAddress]  WITH CHECK ADD  CONSTRAINT [FK_ContactMailingAddress_MailingAddress] FOREIGN KEY([MailingAddressId])
+REFERENCES [dbo].[MailingAddress] ([Id])
+GO
+
+ALTER TABLE [dbo].[ContactMailingAddress] CHECK CONSTRAINT [FK_ContactMailingAddress_MailingAddress]
+GO
+
+

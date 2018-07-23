@@ -1,0 +1,127 @@
+﻿<Window x:Class="ContactsApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ContactsApp"
+        xmlns:vm="clr-namespace:ContactsApp.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="625">
+    <Window.Resources>
+        <vm:ViewModel x:Key="MainVM" />
+    </Window.Resources>
+    <Grid DataContext="{Binding Source={StaticResource MainVM}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="80*"></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="80*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="80*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="320*"></ColumnDefinition>
+            <ColumnDefinition Width="225*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left" Command="{Binding Load}" CommandParameter="0">
+                <Image Source="/ContactsApp;component/Images/All.png" />
+            </Button>
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left" Command="{Binding Add}" CommandParameter="0">
+                <Image Source="/ContactsApp;component/Images/Plus.png" />
+            </Button>
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left" >
+                <Image Source="/ContactsApp;component/Images/Minus.png" />
+            </Button>
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left" Command="{Binding Save}" CommandParameter="0">
+                <Image Source="/ContactsApp;component/Images/Save.png" />
+            </Button>
+        </StackPanel>
+
+        <DataGrid x:Name="ContactsGrid" Grid.Row="1" Grid.RowSpan="6" Grid.Column="0"  Margin="0" RowHeaderWidth="0" AutoGenerateColumns="False"
+                  ItemsSource="{Binding Contacts, Mode =TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedContact,Mode =TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="First Name" Binding="{Binding Path=FirstName}" Width="120" />
+                <DataGridTextColumn Header="Last Name" Binding="{Binding Path=LastName}" Width="120" />
+                <DataGridTextColumn Header="Type" Binding="{Binding Path=Type}" Width="100" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1"  Margin="15,0,0,0">
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left" Command="{Binding Load}" CommandParameter="1">
+                <Image Source="/ContactsApp;component/Images/All.png" />
+            </Button>
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left" Command="{Binding Add}" CommandParameter="1">
+                <Image Source="/ContactsApp;component/Images/Plus.png" />
+            </Button>
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left" >
+                <Image Source="/ContactsApp;component/Images/Minus.png" />
+            </Button>
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left"  Command="{Binding Save}" CommandParameter="1">
+                <Image Source="/ContactsApp;component/Images/Save.png" />
+            </Button>
+        </StackPanel>
+
+        <DataGrid x:Name="EmailGrid"  Margin="20,5,10,0" Grid.Column="1"  Grid.Row="2" AutoGenerateColumns="False"
+                  ItemsSource="{Binding Emails, Mode =TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedEmail,Mode =TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Email addresses" Binding="{Binding Path=Email}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1"  Margin="15,0,0,0">
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left" Command="{Binding Load}" CommandParameter="2">
+                <Image Source="/ContactsApp;component/Images/All.png" />
+            </Button>
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left" Command="{Binding Add}" CommandParameter="2">
+                <Image Source="/ContactsApp;component/Images/Plus.png" />
+            </Button>
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left" >
+                <Image Source="/ContactsApp;component/Images/Minus.png" />
+            </Button>
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left"  Command="{Binding Save}" CommandParameter="2">
+                <Image Source="/ContactsApp;component/Images/Save.png" />
+            </Button>
+        </StackPanel>
+
+        <DataGrid x:Name="PhoneGrid"   Margin="20,5,10,0" Grid.Row="4" Grid.Column="1" AutoGenerateColumns="False"
+                  ItemsSource="{Binding Phones, Mode =TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedPhone, Mode =TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Phone numbers" Binding="{Binding Path=Phone}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Margin="15,0,0,0">
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left" Command="{Binding Load}" CommandParameter="3">
+                <Image Source="/ContactsApp;component/Images/All.png" />
+            </Button>
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left" Command="{Binding Add}" CommandParameter="3">
+                <Image Source="/ContactsApp;component/Images/Plus.png" />
+            </Button>
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left" >
+                <Image Source="/ContactsApp;component/Images/Minus.png" />
+            </Button>
+            <Button Height="20" Width="20" Margin="5,0,0,0" HorizontalAlignment="Left"  Command="{Binding Save}" CommandParameter="3">
+                <Image Source="/ContactsApp;component/Images/Save.png" />
+            </Button>
+        </StackPanel>
+
+        <DataGrid x:Name="MailingAddressGrid"   Margin="20,5,10,0" Grid.Row="6" Grid.Column="1" AutoGenerateColumns="False"
+                  ItemsSource="{Binding Mails, Mode =TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                  SelectedItem="{Binding SelectedMail, Mode =TwoWay,UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Mailing addresses" Binding="{Binding Path=Mailing}" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>
